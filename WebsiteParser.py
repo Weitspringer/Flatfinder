@@ -172,7 +172,8 @@ def __Immowelt(url):
     hard_fact = ad_content.find("div", attrs={"class": "hardfact price_rent"})
     rent = hard_fact.find("strong").get_text().strip()
     # Location
-    location = ad_content.find("div", {"class": "listlocation"}).get_text().strip()
+    location_array = ad_content.find("div", {"class": "listlocation"}).get_text().strip().split()
+    location = "{} {} {}".format(location_array[0], location_array[1], location_array[2])
     # Process data
     ad = {"title": title, "url": link, "rent": rent, "location": location, "time": get_time_stamp()}
     return ad
@@ -212,7 +213,7 @@ def __Immonet(url):
     rent = keyfacts.find("span").get_text().strip()
     # Location
     location_raw = latest_offer.find("span", {"class": "text-100"}).get_text().strip().split()
-    location = "{} {}".format(location_raw[2], location_raw[3])
+    location = "{} {}".format(location_raw[5], location_raw[6])
 
     # Process data
     ad = {"title": title, "url": link, "rent": rent, "location": location, "time": get_time_stamp()}

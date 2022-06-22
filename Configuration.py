@@ -23,7 +23,7 @@ class Configuration(object):
     def __readConfig(self, config):
         # Mail
         try:
-            self.useMail = True
+            self.useMail = config.get("E-Mail", "Use-Mail") != 'False'
             self.smtpMail = config.get("E-Mail", "Address")
             self.smtpServer = config.get("E-Mail", "SMTP-Server")
             self.smtpPort = config.get("E-Mail", "SMTP-Port")
